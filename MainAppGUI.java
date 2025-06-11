@@ -1,10 +1,8 @@
-import javax.swing.*;
+import javax.swing.*; // P15 GUI
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class MainAppGUI {
-    private static Antrian antrian = new Antrian();
+    private static final Antrian antrian = new AntrianBiasa(); // P11 Static Variable
     private static JTextArea outputArea;
 
     public static void main(String[] args) {
@@ -43,14 +41,19 @@ public class MainAppGUI {
         frame.setVisible(true);
     }
 
-    private static void masukSebagaiPengunjung() {
+    private static void masukSebagaiPengunjung() { // P6 Method
         String nama = JOptionPane.showInputDialog("Masukkan nama Anda:");
         if (nama != null && !nama.isEmpty()) {
             Pengunjung pengunjung = new Pengunjung(nama);
-            int pilihan = JOptionPane.showConfirmDialog(null, "Ambil antrian?", "Menu Pengunjung", JOptionPane.YES_NO_OPTION);
+            int pilihan = JOptionPane.showConfirmDialog(null, "Ambil antrian?", "Menu Pengunjung",
+                    JOptionPane.YES_NO_OPTION);
             if (pilihan == JOptionPane.YES_OPTION) {
-                int nomor = pengunjung.ambilAntrian(antrian);
-                outputArea.append(nama + " mendapat nomor antrian: " + nomor + "\n");
+                try {
+                    int nomor = pengunjung.ambilAntrian(antrian);
+                    outputArea.append(nama + " mendapat nomor antrian: " + nomor + "\n");
+                } catch (IllegalStateException e) {
+                    outputArea.append("Gagal ambil antrian: " + e.getMessage() + "\n");
+                }
             }
         }
     }
@@ -59,17 +62,17 @@ public class MainAppGUI {
         String nama = JOptionPane.showInputDialog("Masukkan nama Petugas:");
         if (nama != null && !nama.isEmpty()) {
             Petugas petugas = new Petugas(nama);
-            String[] options = {"Panggil Antrian", "Lihat Nomor Berikutnya", "Sisa Antrian", "Keluar"};
+            String[] options = { "Panggil Antrian", "Lihat Nomor Berikutnya", "Sisa Antrian", "Keluar" }; // P5 Array
             while (true) {
                 int pilihan = JOptionPane.showOptionDialog(null, "Menu Petugas", "Petugas",
                         JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
                 if (pilihan == 0) {
-                    try {
+                    try { // P12 Exception Handling
                         int nomor = petugas.panggilAntrian(antrian);
                         outputArea.append("Memanggil antrian nomor: " + nomor + "\n");
                     } catch (IllegalStateException e) {
-                        outputArea.append("Antrian kosong.\n");
+                        outputArea.append("Antrian kosong: " + e.getMessage() + "\n");
                     }
                 } else if (pilihan == 1) {
                     Integer berikutnya = antrian.lihatNomorBerikutnya();
