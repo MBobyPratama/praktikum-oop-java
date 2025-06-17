@@ -13,5 +13,5 @@ public abstract class User {
         this.nama = nama;
     }
 
-    public abstract void tampilkanMenu();
+    public abstract void tampilkanMenu(); // P13 Abstract and Interface (Abstract)
 }

@@ -1,12 +1,12 @@
-public class Pengunjung extends User {
-    private int nomorAntrian;
+public class Pengunjung extends User { // P9 Inheritance
+    private int nomorAntrian; // P7 Encapsulation
 
     public Pengunjung(String nama) {
         super(nama);
-        this.nomorAntrian = -1; // -1 means belum ambil antrian
+        this.nomorAntrian = -1;
     }
 
-    @Override
+    @Override // P10 Polimorfisme
     public void tampilkanMenu() {
         System.out.println("Menu Pengunjung:");
         System.out.println("1. Ambil Nomor Antrian");

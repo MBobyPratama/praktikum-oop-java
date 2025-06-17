@@ -13,7 +13,7 @@ public class Petugas extends User {
         System.out.println("4. Keluar");
     }
 
-    public int panggilAntrian(Antrian antrian) {
+    public int panggilAntrian(Antrian antrian) { // P12 Exception Handling
         try {
             int dipanggil = antrian.panggilNomor();
             return dipanggil;
