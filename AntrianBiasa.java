@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class AntrianBiasa implements Antrian {
-    private final ArrayList<Integer> daftarAntrian;
+    private final ArrayList<Integer> daftarAntrian; //P14 Array List
     private int nomorTerakhir;
 
     private static final String PESAN_ANTRIAN_KOSONG = "Antrian kosong. Tidak ada nomor untuk dipanggil."; // P11 Final
