@@ -1,6 +1,8 @@
 # Sistem Manajemen Antrian
-
+<br> <br>
 ![TEORI-ANTRIAN-2](https://github.com/user-attachments/assets/a7743b54-2498-4576-aef7-b792bcaade78)
+<br>
+<br>
 
 ## 🤝 Kontributor
 - Quyun Isnawan - 2310512049
