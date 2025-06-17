@@ -1,5 +1,7 @@
 # Sistem Manajemen Antrian
 
+![TEORI-ANTRIAN-2](https://github.com/user-attachments/assets/a7743b54-2498-4576-aef7-b792bcaade78)
+
 ## 🤝 Kontributor
 - Quyun Isnawan - 2310512049
 - Muhammad Sulthan Yasin Zain - 2310512055
@@ -138,10 +140,13 @@ java MainAppGUI
 
 ## 📸 Screenshots
 ### Tampilan Utama
+![image](https://github.com/user-attachments/assets/51799bc0-5437-45fa-81d6-5ca552a52caf)
 
 ### Mode Pengunjung
+![image](https://github.com/user-attachments/assets/316de08c-224e-4931-aef3-154c522c3ee2)
 
 ### Mode Petugas
+![image](https://github.com/user-attachments/assets/cc980944-781a-4efa-8492-edf10f0a9fe4)
 
 ## 🛠️ Batasan Sistem
 - Jumlah maksimum antrian adalah 5
