@@ -207,31 +207,61 @@ public class MainAppGUI {
     }
     
     private static JPanel createStatusPanel() {
-        JPanel statusPanel = new JPanel();
+        JPanel statusPanel = new JPanel(new BorderLayout());
         statusPanel.setBackground(PRIMARY_COLOR);
-        statusPanel.setLayout(new BorderLayout());
         statusPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-        
+
+        // Label status utama
         statusLabel = new JLabel("Status: Siap");
         statusLabel.setFont(new Font("Segoe UI", Font.ITALIC, 12));
         statusLabel.setForeground(Color.WHITE);
-        
         statusPanel.add(statusLabel, BorderLayout.WEST);
-        
-        JLabel infoLabel = new JLabel("Antrian Tersisa: " + antrian.sisaAntrian());
-        infoLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
-        infoLabel.setForeground(Color.WHITE);
-        
-        statusPanel.add(infoLabel, BorderLayout.EAST);
-        
-        // timer untuk memperbarui informasi antrian
+
+   
+        JPanel infoPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        infoPanel.setOpaque(false);
+
+        // Cek apakah antrian sudah tersedia
+        String sisaAntrianText = (antrian != null) ? String.valueOf(antrian.sisaAntrian()) : "0";
+        String berikutnyaText = (antrian != null && antrian.lihatNomorBerikutnya() != null)
+            ? String.valueOf(antrian.lihatNomorBerikutnya())
+            : "Tidak ada antrian";
+
+        JLabel sisaAntrianLabel = new JLabel("Antrian Tersisa: " + sisaAntrianText);
+        sisaAntrianLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        sisaAntrianLabel.setForeground(Color.WHITE);
+
+        JLabel berikutnyaLabel = new JLabel("Antrian Berikutnya: " + berikutnyaText);
+        berikutnyaLabel.setFont(new Font("Segoe UI", Font.BOLD, 12));
+        berikutnyaLabel.setForeground(Color.WHITE);
+
+        infoPanel.add(sisaAntrianLabel);
+        infoPanel.add(berikutnyaLabel);
+
+        statusPanel.add(infoPanel, BorderLayout.EAST);
+
+        // Timer untuk memperbarui informasi antrian
         Timer timer = new Timer(1000, e -> {
-            infoLabel.setText("Antrian Tersisa: " + antrian.sisaAntrian());
+            if (antrian != null) {
+                sisaAntrianLabel.setText("Antrian Tersisa: " + antrian.sisaAntrian());
+
+                Object berikutnya = antrian.lihatNomorBerikutnya();
+                if (berikutnya != null) {
+                    berikutnyaLabel.setText("Antrian Berikutnya: " + berikutnya);
+                } else {
+                    berikutnyaLabel.setText("Antrian Berikutnya: Tidak ada antrian");
+                }
+            } else {
+                sisaAntrianLabel.setText("Antrian Tersisa: 0");
+                berikutnyaLabel.setText("Antrian Berikutnya: Tidak ada antrian");
+            }
         });
         timer.start();
-        
+
         return statusPanel;
     }
+
+
 
     private static void updateStatus(String message) {
         statusLabel.setText("Status: " + message);
